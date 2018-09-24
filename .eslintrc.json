@@ -6,25 +6,50 @@
     },
     "extends": "eslint:recommended",
     "parserOptions": {
+        "parser": "babel-eslint",
         "ecmaVersion": 2015,
         "sourceType": "module"
     },
     "rules": {
-        "indent": [
-            "error",
-            "tab"
-        ],
-        "linebreak-style": [
-            "error",
-            "unix"
-        ],
-        "quotes": [
-            "error",
-            "single"
-        ],
-        "semi": [
-            "error",
-            "always"
-        ]
+        "indent": ["error", "tab"],
+        "linebreak-style": ["error", "unix"],
+        "quotes": ["error", "single"],
+        "semi": ["error", "always"],
+        "comma-dangle": ["error", "never"],
+        "generator-star-spacing": "off",
+        "space-before-function-paren": "off",
+        "space-in-parens": ["error", "never"],
+        "no-underscore-dangle": "off",
+        "no-param-reassign": "off",
+        "vars-on-top": "off",
+        "object-shorthand": "off",
+        "no-useless-escape": ["error", "always"],
+        "no-new-func": ["error", "always"],
+        "no-lonely-if": "off",
+        "import/prefer-default-export": "off",
+        "consistent-return": "off",
+        "no-restricted-syntax": "off",
+        "no-inner-declarations": "off",
+        "array-bracket-spacing": ["error", "never"],
+        "object-curly-spacing": ["error", "never"],
+        "block-spacing": ["error", "always"],
+        "no-unused-vars": ["warn", {"vars": "all"}],
+        "eqeqeq": ["error", "always"],
+        "max-len": "off",
+        "prefer-arrow-callback": "off",
+        "no-shadow": "off",
+        "prefer-template": "off",
+        "global-require": "off",
+        "no-nested-ternary": "off",
+        "no-multi-assign": "off",
+        "array-callback-return": "off",
+        "guard-for-in": "off",
+        "no-useless-return": "off",
+        "radix": ["error", "as-needed"],
+        "default-case": "off",
+        "no-bitwise": "off",
+        "no-else-return": "off",
+        "arrow-body-style": "off",
+        "no-unused-expressions": "off"
     }
 }
