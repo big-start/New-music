@@ -37,7 +37,6 @@
         "eqeqeq": ["error", "always"],
         "max-len": "off",
         "prefer-arrow-callback": "off",
-        "no-shadow": "off",
         "prefer-template": "off",
         "global-require": "off",
         "no-nested-ternary": "off",
