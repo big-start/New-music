@@ -96,6 +96,7 @@
       Temporary Items
       .apdisk
 
-      # End of https://www.gitignore.io/api/OSX
+      # IDEA
+      .idea
 
-      
+      # End of https://www.gitignore.io/api/OSX
