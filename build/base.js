@@ -31,6 +31,12 @@ module.exports = {
           limit: 1024,
           name: 'img/[hash:7].[ext]'
         }
+      },
+      {
+        test: /\.hbs$/,
+        loader: 'handlebars-loader',
+        include: [ SRC_PATH ],
+        exclude: /(node_modules)/
       }
     ]
   },

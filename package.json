@@ -36,6 +36,8 @@
   },
   "dependencies": {
     "babel-eslint": "^9.0.0",
+    "handlebars": "^4.0.12",
+    "handlebars-loader": "^1.7.0",
     "normalize.css": "^5.0.0"
   },
   "engines": {

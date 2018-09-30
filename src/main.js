@@ -1,11 +1,20 @@
-require('normalize.css')
-require('@/main.css')
+require('normalize.css');
+require('@/main.css');
 
-const logoSrc = require('@/assets/images/yeoman-logo.png')
+import template from '@/templates/test.hbs';
 
-const logo = document.createElement('img')
-logo.setAttribute('src', logoSrc)
-document.getElementById('app').appendChild(logo)
+const app = document.getElementById('app');
+const logoSrc = require('@/assets/images/yeoman-logo.png');
+const logo = document.createElement('img');
+const content = document.createElement('div');
+
+content.innerHTML = template({name: 'world (example)!'});
+
+console.log('test-hbs', template({name: 'world (example)!'}));
+
+logo.setAttribute('src', logoSrc);
+app.appendChild(logo);
+app.appendChild(content);
 
 // function append() {
 //   require.ensure(['jquery'], require => {
