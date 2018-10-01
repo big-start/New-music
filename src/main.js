@@ -1,5 +1,5 @@
 require('normalize.css');
-require('@/main.css');
+require('@/assets/styles/main.less');
 
 import template from '@/templates/test.hbs';
 
