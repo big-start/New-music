@@ -38,6 +38,10 @@ module.exports = {
         include: [ SRC_PATH ],
         exclude: /(node_modules)/
       }
+      {
+        test: /\.less$/,
+        loader: 'less-loader' // compiles Less to CSS
+      },
     ]
   },
 }
