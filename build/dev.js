@@ -18,6 +18,10 @@ const dev = {
         test: /\.css$/,
         loaders: [ 'style-loader', 'css-loader' ],
       },
+      {
+        test: /\.less$/,
+        loaders: [ 'style-loader', 'css-loader', 'less-loader' ],
+      }
     ]
   },
   plugins: [
