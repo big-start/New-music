@@ -2,25 +2,21 @@ require('normalize.css');
 require('@/main.css');
 
 import template from '@/templates/test.hbs';
+import $ from "jquery";
+import Api from '@/js/get.js';
 
-const app = document.getElementById('app');
-const logoSrc = require('@/assets/images/yeoman-logo.png');
-const logo = document.createElement('img');
-const content = document.createElement('div');
+let apiKey = '';
+let allTrack = 'track.getTags' + apiKey + '&artist=AC/DC&track=Hells+Bells&user=RJ&format=json';
+let similarTrack = 'track.getsimilar&artist=cher&track=believe' + apiKey + '&format=json';
+let albumTop = 'album.gettoptags&artist=radiohead&album=the%20bends' + apiKey + '&format=json';
+let api = new Api();
 
-content.innerHTML = template({name: 'world (example)!'});
-
-console.log('test-hbs', template({name: 'world (example)!'}));
-
-logo.setAttribute('src', logoSrc);
-app.appendChild(logo);
-app.appendChild(content);
-
-// function append() {
-//   require.ensure(['jquery'], require => {
-//     const $ = require('jquery')
-//     $('#app').append(logo)
-//   })
-// }
-
-// setTimeout(append, 0)
+$('#track').click(function() {
+  api.get(allTrack);
+});
+$('#artist').click(function() {
+  api.get(similarTrack);
+});
+$('#album').click(function() {
+  api.get(albumTop);
+});
