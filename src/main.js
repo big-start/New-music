@@ -5,7 +5,7 @@ import template from '@/templates/test.hbs';
 import $ from "jquery";
 import Api from '@/js/get.js';
 
-let apiKey = '';
+let apiKey = process.env.APP_API_KEY;
 let allTrack = 'track.getTags' + apiKey + '&artist=AC/DC&track=Hells+Bells&user=RJ&format=json';
 let similarTrack = 'track.getsimilar&artist=cher&track=believe' + apiKey + '&format=json';
 let albumTop = 'album.gettoptags&artist=radiohead&album=the%20bends' + apiKey + '&format=json';
