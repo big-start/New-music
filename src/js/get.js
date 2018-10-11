@@ -4,7 +4,7 @@ function Api(a) {
   this.get = function(a) {
     fetch(apiString + a)
       .then(res => res.json()).then(data => {
-      return data
+        return data
     })
       .catch(err => {
         console.log(err)
