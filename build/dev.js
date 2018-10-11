@@ -4,6 +4,7 @@ const merge = require('webpack-merge')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const { SRC_PATH } = require('./utils')
 const base = require('./base')
+const Dotenv = require('dotenv-webpack');
 
 const dev = {
   devServer: {
@@ -25,6 +26,7 @@ const dev = {
     ]
   },
   plugins: [
+    new Dotenv(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
       "process.env": {

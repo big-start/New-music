@@ -7,6 +7,7 @@ const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
 const { SRC_PATH } = require('./utils')
 const base = require('./base')
+const Dotenv = require('dotenv-webpack');
 base.output.publicPath = './'
 
 const prod = {
@@ -22,6 +23,7 @@ const prod = {
     ]
   },
   plugins: [
+    new Dotenv(),
     new ExtractTextPlugin("styles.[hash:7].css"),
     new OptimizeCSSPlugin(),
     new HtmlWebpackPlugin({
