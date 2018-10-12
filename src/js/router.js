@@ -1,24 +1,23 @@
 function Router(e) {
-    let menu = document.querySelector('.menu');
-
     let content = document.querySelector('.item');
     let items = {
         artist: "Artists",
         track: "Track",
-        album: "Album"
+        album: "Album",
+        chart: "Chart"
     };
 
-    function updatePage (data) {
+    this.updatePage = function (data) {
         if (!data) return;
-        content.innerHTML = items[data.page]
-    }
+        content.innerHTML = items[data]
+    };
 
     this.state = function (e) {
         let state;
         if (e.target.tagName !== 'A') return;
-        state = { page: e.target.getAttribute('href') };
-        history.pushState(state, '', state.page);
-        updatePage(state);
+        state =  e.target.getAttribute('href');
+        history.pushState(state, '', state);
+        this.updatePage(state);
     }
 }
 
