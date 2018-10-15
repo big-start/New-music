@@ -1,5 +1,6 @@
-const path = require('path')
-const { SRC_PATH, DIST_PATH } = require('./utils')
+const path = require('path');
+const Dotenv = require('dotenv-webpack');
+const { SRC_PATH, DIST_PATH } = require('./utils');
 
 module.exports = {
   entry: {
@@ -40,4 +41,7 @@ module.exports = {
       }
     ]
   },
-}
+  plugins: [
+    new Dotenv()
+  ]
+};

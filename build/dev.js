@@ -1,10 +1,9 @@
-const path = require('path')
-const webpack = require('webpack')
-const merge = require('webpack-merge')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const { SRC_PATH } = require('./utils')
-const base = require('./base')
-const Dotenv = require('dotenv-webpack');
+const path = require('path');
+const webpack = require('webpack');
+const merge = require('webpack-merge');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { SRC_PATH } = require('./utils');
+const base = require('./base');
 
 const dev = {
   devServer: {
@@ -26,7 +25,6 @@ const dev = {
     ]
   },
   plugins: [
-    new Dotenv(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
       "process.env": {
@@ -37,6 +35,6 @@ const dev = {
       template: path.resolve(SRC_PATH, 'index.html')
     }),
   ]
-}
+};
 
-module.exports = merge.smart(base, dev)
+module.exports = merge.smart(base, dev);
