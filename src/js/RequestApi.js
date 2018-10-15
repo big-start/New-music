@@ -1,8 +1,8 @@
-function Api(a) {
+export default function (params) {
   let apiString = 'http://ws.audioscrobbler.com/2.0/?method=';
 
-  this.get = function(a) {
-    fetch(apiString + a)
+  this.get = function(params) {
+    fetch(apiString + params)
       .then(res => res.json()).then(data => {
       return data
     })
@@ -11,5 +11,3 @@ function Api(a) {
       })
   }
 }
-
-export default Api;
