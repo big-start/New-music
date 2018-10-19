@@ -4,7 +4,7 @@ require('normalize.css');
 import template from '@/templates/test.hbs';
 import $ from "jquery";
 import RequestApi from '@/js/RequestApi';
-import  Router from "@/js/router.js"
+import  Router from "@/js/router.js";
 
 let key = process.env.APP_API_KEY;
 let apiKey = '&api_key=' + key;

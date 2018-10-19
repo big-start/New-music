@@ -1,14 +1,13 @@
-const path = require('path')
-const webpack = require('webpack')
-const merge = require('webpack-merge')
-const ExtractTextPlugin = require("extract-text-webpack-plugin")
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
+const path = require('path');
+const webpack = require('webpack');
+const merge = require('webpack-merge');
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin');
 const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
-const { SRC_PATH } = require('./utils')
-const base = require('./base')
-const Dotenv = require('dotenv-webpack');
-base.output.publicPath = './'
+const { SRC_PATH } = require('./utils');
+const base = require('./base');
+base.output.publicPath = './';
 
 const prod = {
   module: {
@@ -23,7 +22,6 @@ const prod = {
     ]
   },
   plugins: [
-    new Dotenv(),
     new ExtractTextPlugin("styles.[hash:7].css"),
     new OptimizeCSSPlugin(),
     new HtmlWebpackPlugin({
@@ -36,6 +34,6 @@ const prod = {
     }),
     new UglifyJSPlugin()
   ]
-}
+};
 
-module.exports = merge.smart(base, prod)
+module.exports = merge.smart(base, prod);
