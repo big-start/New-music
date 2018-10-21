@@ -6,9 +6,7 @@ export default () => {
   return {
     template: template({name: 'world author page (example)!'}),
     context: () => {
-      $('.j-router-link').on('click', function() {
-        app.$router.push({path: $(this).data('href')});
-      });
+      console.log('author');
     }
   };
 }
