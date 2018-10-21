@@ -11,17 +11,24 @@ export default function createRouter() {
       {
         path: '/main',
         name: 'MainPage',
-        component: () => import('@/pages/mainPage')
+        component: () => import('@/pages/mainPage'),
+        children: [
+          {
+            path: '/author',
+            name: 'AuthorPage',
+            component: () => import('@/pages/authorPage')
+          },
+          {
+            path: '/band',
+            name: 'BandPage',
+            component: () => import('@/pages/bandPage')
+          },
+        ]
       },
       {
-        path: '/author',
-        name: 'AuthorPage',
-        component: () => import('@/pages/authorPage')
-      },
-      {
-        path: '/band',
-        name: 'BandPage',
-        component: () => import('@/pages/bandPage')
+        path: '/track',
+        name: 'TrackPage',
+        component: () => import('@/pages/trackPage')
       },
       // bandRoutes,
       // {
