@@ -44,8 +44,14 @@ function useRoute(routes, route) {
     setRoute(routes, {path: route.redirect.path});
   }
   if (route.component) {
-    route.component().then((module) => {
-      module.default();
-    });
+    renderComponent(route);
   }
+}
+
+function renderComponent(route) {
+  const routerView = document.querySelector('.j-router-view');
+  route.component().then((module) => {
+    routerView.innerHTML = module.default().template;
+    module.default().context();
+  });
 }
