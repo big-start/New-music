@@ -78,7 +78,8 @@ function renderComponent(route) {
       container = document.createElement('div');
       contextArr.forEach((item) => {
         item();
-      })
+      });
+      contextArr = [];
     }
   });
 }
