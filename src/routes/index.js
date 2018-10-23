@@ -10,17 +10,14 @@ export default function createRouter() {
       },
       {
         path: '/main',
-        name: 'MainPage',
         component: () => import('@/pages/mainPage'),
         children: [
           {
             path: '/author',
-            name: 'AuthorPage',
             component: () => import('@/pages/authorPage')
           },
           {
             path: '/band',
-            name: 'BandPage',
             component: () => import('@/pages/bandPage')
           },
         ]
@@ -30,6 +27,7 @@ export default function createRouter() {
         name: 'TrackPage',
         component: () => import('@/pages/trackPage')
       },
+      // TODO separate route into files, add error pages
       // bandRoutes,
       // {
       //   path: '/errors',
