@@ -8,7 +8,7 @@ export default () => {
     context: () => {
       console.log('main');
       $('.j-router-link').on('click', function() {
-        app.$router.push({path: $(this).data('href')});
+        app.$router.push($(this).data('href'));
       });
     }
   };

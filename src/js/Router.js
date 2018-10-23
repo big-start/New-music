@@ -4,9 +4,10 @@ export default function (options) {
   this.init = (() => setRoute(routes, {path: location.pathname}))();
   
   this.push = (route) => {
-    findRoute(routes, route).then((route) => {
-      history.pushState({}, '', route.fullPath);
-      useRoute(routes, route);
+    findRoute(routes, {path: route}).then((route) => {
+      if (route.fullPath !== location.pathname) {
+        pushRoute(routes, route);
+      }
     });
   };
 };
@@ -31,16 +32,65 @@ function findRoute(routes, route) {
 
 function setRoute(routes, route) {
   const pathArr = route.path.split('/').splice(1);
-  pathArr.forEach((item) => {
-    findRoute(routes, {path: `/${item}`}).then((route) => {
-      useRoute(routes, route);
+  let contArr = [];
+  let tempArr = [];
+  let renderQueue = [];
+  pathArr.forEach((path) => {
+    const promise = findRoute(routes, {path: `/${path}`}).then((route) => {
+      return new Promise((resolve) => {
+        if (route.component) {
+          route.component().then((module) => {
+            contArr.push(module.default().context);
+            tempArr.push(module.default().template);
+            resolve();
+          })
+        }
+        if (route.redirect) {
+          pushRoute(routes, route);
+          resolve();
+        }
+      });
     });
+    renderQueue.push(promise);
   });
+  Promise.all(renderQueue).then(() => {
+    if (contArr.length && tempArr.length) {
+      renderAfterReload(contArr, tempArr);
+    }
+  });
+  
+  console.log('popstate fff', window.onpopstate);
+  window.addEventListener('popstate', function(e){
+    console.log(e.state.route);
+    setRoute(routes, {path: e.state.route});
+  }, false);
 }
 
-function useRoute(routes, route) {
+function renderAfterReload(contArr, tempArr) {
+  console.log('render');
+  const routerView = document.querySelector('.j-router-view');
+  let container = document.createElement('div');
+  
+  tempArr.forEach((template) => {
+    const routerViewList = container.querySelectorAll('.j-router-view');
+    if (!routerViewList.length) {
+      container.innerHTML = template;
+    } else {
+      routerViewList[routerViewList.length - 1].innerHTML = template;
+    }
+  });
+  
+  routerView.innerHTML = container.innerHTML;
+  
+  contArr.forEach((context) => {
+    context();
+  })
+}
+
+function pushRoute(routes, route) {
+  history.pushState({route: route.fullPath}, '', route.fullPath);
   if (route.redirect) {
-    history.pushState(route, '', route.redirect.path);
+    history.pushState({route: route.redirect.path}, '', route.redirect.path);
     setRoute(routes, {path: route.redirect.path});
   }
   if (route.component) {
@@ -48,52 +98,15 @@ function useRoute(routes, route) {
   }
 }
 
-let container = document.createElement('div');
-let contextArr = [];
 function renderComponent(route) {
-  let viewsList;
-  let template;
-  let isLayout;
   const renderParams = genRenderParams(route);
-  const routerView = document.querySelector('.j-router-view');
-  const routerViewList = document.querySelectorAll('.j-router-view');
+  const routerView = document.querySelectorAll('.j-router-view');
 
   route.component().then((module) => {
-    viewsList = container.querySelectorAll('.j-router-view');
-    template = module.default().template;
-    isLayout = !viewsList.length;
-    
-    if (isLayout) {
-      container.innerHTML = template;
-    } else {
-      viewsList[viewsList.length - 1].innerHTML = template;
-    }
-    contextArr.push(module.default().context);
-    if (renderParams.index === renderParams.pathLength - 1) {
-      if (isLayout) {
-        routerViewList[renderParams.index].innerHTML = template;
-      } else {
-        routerView.innerHTML = container.innerHTML;
-      }
-      container = document.createElement('div');
-      contextArr.forEach((item) => {
-        item();
-      });
-      contextArr = [];
-    }
+    routerView[renderParams.index].innerHTML = module.default().template;
+    module.default().context();
   });
 }
-
-// TODO not delete!!!
-// function renderComponent(route) {
-//   const renderParams = genRenderParams(route);
-//   const routerView = document.querySelectorAll('.j-router-view');
-//
-//   route.component().then((module) => {
-//     routerView[renderParams.index].innerHTML = module.default().template;
-//     module.default().context();
-//   });
-// }
 
 function genRenderParams(route) {
   const pathArr = location.pathname.split('/').splice(1);
@@ -102,3 +115,9 @@ function genRenderParams(route) {
     index: pathArr.indexOf(route.path.substring(1))
   }
 }
+
+// window.addEventListener('popstate', function(e){
+//   console.log('chane');
+//   console.log(e.state.route);
+//   setRoute(routes, {path: e.state.route});
+// }, false);
