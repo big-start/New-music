@@ -10,6 +10,12 @@ export default function (options) {
       }
     });
   };
+  
+  window.addEventListener('popstate', function(e){
+    if (e.state.route) {
+      setRoute(routes, {path: e.state.route});
+    }
+  }, false);
 };
 
 function findRoute(routes, route) {
@@ -58,16 +64,9 @@ function setRoute(routes, route) {
       renderAfterReload(contArr, tempArr);
     }
   });
-  
-  console.log('popstate fff', window.onpopstate);
-  window.addEventListener('popstate', function(e){
-    console.log(e.state.route);
-    setRoute(routes, {path: e.state.route});
-  }, false);
 }
 
 function renderAfterReload(contArr, tempArr) {
-  console.log('render');
   const routerView = document.querySelector('.j-router-view');
   let container = document.createElement('div');
   
@@ -115,9 +114,3 @@ function genRenderParams(route) {
     index: pathArr.indexOf(route.path.substring(1))
   }
 }
-
-// window.addEventListener('popstate', function(e){
-//   console.log('chane');
-//   console.log(e.state.route);
-//   setRoute(routes, {path: e.state.route});
-// }, false);
