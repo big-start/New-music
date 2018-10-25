@@ -1,22 +1,30 @@
 require('normalize.css');
 require('@/assets/styles/main.less');
 
-import template from '@/templates/test.hbs';
-import $ from "jquery";
+import App from '@/js/App';
 import RequestApi from '@/js/RequestApi';
+import routes from '@/routes';
+import jQuery from 'jquery';
+import Handlebars from 'handlebars/dist/cjs/handlebars';
 
-let apiKey = process.env.API_KEY;
-let api = new RequestApi();
-let allTrack = 'track.getTags&api_key=' + apiKey + '&artist=AC/DC&track=Hells+Bells&user=RJ&format=json';
-let similarTrack = 'track.getsimilar&artist=cher&track=believe&api_key=' + apiKey + '&format=json';
-let albumTop = 'album.gettoptags&artist=radiohead&album=the%20bends&api_key=' + apiKey + '&format=json';
+const $router = routes();
+const $root = document.getElementById('app');
+const $api = new RequestApi();
+const $lib = {jQuery, Handlebars};
 
-$('#track').click(function() {
-  api.get(allTrack);
-});
-$('#artist').click(function() {
-  api.get(similarTrack);
-});
-$('#album').click(function() {
-  api.get(albumTop);
-});
+const key = process.env.APP_API_KEY;
+const apiKey = '&api_key=' + key;
+const allTrack = 'track.getTags&api_key=' + apiKey + '&artist=AC/DC&track=Hells+Bells&user=RJ&format=json';
+const similarTrack = 'track.getsimilar&artist=cher&track=believe&api_key=' + apiKey + '&format=json';
+const albumTop = 'album.gettoptags&artist=radiohead&album=the%20bends&api_key=' + apiKey + '&format=json';
+
+function appInit () {
+  return new App({
+    $lib,
+    $root,
+    $router,
+    $api,
+  });
+}
+
+export default appInit();

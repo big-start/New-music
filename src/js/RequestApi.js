@@ -4,7 +4,7 @@ export default function (params) {
   this.get = function(params) {
     fetch(apiString + params)
       .then(res => res.json()).then(data => {
-      return data
+        return data
     })
       .catch(err => {
         console.log(err)
