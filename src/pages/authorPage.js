@@ -6,7 +6,9 @@ export default () => {
   return {
     template: template({name: 'world author page (example)!'}),
     context: () => {
-      console.log('author');
+      app.fetcher(app.lastFm.allTrack).then((resolve) => {
+        console.log(resolve.tags.tag)
+      });
     }
   };
 }
