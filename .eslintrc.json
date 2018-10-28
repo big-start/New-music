@@ -49,6 +49,10 @@
         "no-bitwise": "off",
         "no-else-return": "off",
         "arrow-body-style": "off",
-        "no-unused-expressions": "off"
+        "no-octal": ["error", "always"],
+        "no-shadow": "off",
+        "no-unused-expressions": "off",
+        "no-debugger": ["warn", {"vars": "all"}],
+        "no-alert": ["error", "always"]
     }
 }

@@ -1,3 +1,11 @@
+/* Router js library:
+*
+* use <div class="j-router-view"></div> - to show route component
+* use <a class="j-router-link" data-href="/author">route-link</a> - to push new route state
+*
+* important class names: .j-router-link, .j-router-view
+* */
+
 export default function (options) {
   const routes = options.routes;
   

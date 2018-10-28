@@ -10,7 +10,10 @@ cd New-music
  npm install
 ```
 
-# To start project run
+# Create .env file with constants and api_key.
+Create this file in application root folder using example.env file
+
+# To start project in development mode run
 ```
  npm run dev
 ```
