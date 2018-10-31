@@ -6,8 +6,8 @@ export default () => {
   return {
     template: template({name: 'world track page (example)!'}),
     context: () => {
-      app.fetcher(app.lastFm.albumTop).then((resolve) => {
-        console.log(resolve.toptags.tag)
+      app.$api.allTrack().then((resolve) => {
+        console.log(resolve)
       });
     }
   };

@@ -1,17 +1,24 @@
 import Api from '@/js/RequestApi';
 
-const api = new Api();
 const key = process.env.APP_API_KEY;
-const apiKey = '&api_key=' + key;
-const apiString = 'http://ws.audioscrobbler.com/2.0/?method=';
-const format = '&format=json';
-
-export const lastFm = ({
-  allTrack: apiString + 'track.getTags&api_key=' + apiKey + '&artist=AC/DC&track=Hells+Bells&user=RJ' + format,
-  similarTrack: apiString + 'track.getsimilar&artist=cher&track=believe&api_key=' + apiKey + format,
-  albumTop: apiString + 'album.gettoptags&artist=radiohead&album=the%20bends&api_key=' + apiKey + format
+const api = new Api({
+  apiKey: '&api_key=' + key,
+  url: 'http://ws.audioscrobbler.com/2.0/?method=',
+  format: '&format=json',
 });
 
-export default function (params) {
-   return api.get(params);
+export default function () {
+
+  this.allTrack = () => {
+    return api.get('track.gettoptags&artist=radiohead&track=paranoid+android')
+  };
+
+  this.similarTrack = () => {
+    return api.get('track.getsimilar&artist=cher&track=believe')
+  };
+
+  this.albumTop = () => {
+    return api.get('album.gettoptags&artist=radiohead&album=the%20bends')
+  };
+
 }

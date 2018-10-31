@@ -6,8 +6,8 @@ export default () => {
   return {
     template: template({name: 'world author page (example)!'}),
     context: () => {
-      app.fetcher(app.lastFm.allTrack).then((resolve) => {
-        console.log(resolve.tags.tag)
+      app.$api.similarTrack().then((resolve) => {
+        console.log(resolve);
       });
     }
   };

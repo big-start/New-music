@@ -1,6 +1,6 @@
-export default function (params) {
-  this.get = function(params) {
-    return fetch(params)
+export default function (options) {
+  this.get = function(request) {
+    return fetch(`${options.url}${request}${options.apiKey}${options.format}`)
              .then(res => res.json()).then(data => {
               return data
            })
