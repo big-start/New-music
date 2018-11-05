@@ -6,7 +6,7 @@ export default () => {
   return {
     template: template({name: 'world author page (example)!'}),
     context: () => {
-      app.$api.similarTrack().then((resolve) => {
+      app.$api.allArtis({get: 'gettoptags',artist: 'cher'}).then((resolve) => {
         console.log(resolve);
       });
     }

@@ -6,7 +6,7 @@ export default () => {
   return {
     template: template({name: 'world band page (example)!'}),
     context: () => {
-      app.$api.albumTop().then((resolve) => {
+      app.$api.albumTop({method: 'gettoptags',artist: 'radiohead',track: 'the%20bends'}).then((resolve) => {
         console.log(resolve)
       });
     }
