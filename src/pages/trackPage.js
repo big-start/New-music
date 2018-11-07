@@ -6,7 +6,9 @@ export default () => {
   return {
     template: template({name: 'world track page (example)!'}),
     context: () => {
-      console.log('track');
+      app.$api.getAllTrack({artist: 'radiohead', track: 'paranoid+android'}).then((resolve) => {
+        console.log(resolve)
+      });
     }
   };
 }
