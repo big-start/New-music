@@ -6,7 +6,7 @@ export default () => {
   return {
     template: template({name: 'world author page (example)!'}),
     context: () => {
-      app.$api.allArtis({get: 'gettoptags',artist: 'cher'}).then((resolve) => {
+      app.$api.getAllArtis({artist: 'cher'}).then((resolve) => {
         console.log(resolve);
       });
     }
