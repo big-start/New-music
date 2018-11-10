@@ -1,38 +1,45 @@
 @import "variables.less";
 
-.test {
-	width: 50%;
-	overflow: hidden;
-	border: 2px dashed rebeccapurple;
-	.test__text {
-		color: @aqua;
-		background-color: aliceblue;
-	}
-	.test__content {
-		color: red;
-	}
+* {
+	margin: 0;
+	padding: 0;
 }
+
 .nav {
-	background: black;
 	height: 100px;
 	width: 100%;
+	background: @black;
 	.logo {
 		display: inline-block;
+		width: 100px;
+		height: 100%;
 		img {
-			width: 60%;
+			width: 100%;
 		}
 	}
-	ul {
+	.nav-menu {
 		display: inline-block;
-		li {
+		height: 100%;
+		margin-left: 25px;
+		vertical-align: top;
+		.nav-menu__item {
 			display: inline-block;
+			width: 150px;
 			height: 100%;
+			text-align: center;
 			list-style: none;
-			a {
-				display: inline-block;
+			.nav-menu__item-link {
+				display: block;
 				height: 100%;
+				font-weight: bold;
+				line-height: 100px;
 				text-decoration: none;
-				color: #ffe400;
+				color: @yellow;
+				cursor: pointer;
+				&:hover {
+					color: @black;
+					background: @yellow;
+				}
 			}
 		}
 	}
