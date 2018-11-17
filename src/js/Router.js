@@ -71,6 +71,7 @@ function createHelper(props) {
         return new Promise((resolve) => {
           for (let i = 0, max = routes.length; i < max; i+=1) {
             if (routes[i].path === '*') {
+              routes[i].fullPath = route.path;
               return resolve(routes[i]);
             }
           }
@@ -151,6 +152,10 @@ function createHelper(props) {
     renderComponent(route) {
       const renderParams = this.genRenderParams(route);
       const routerView = document.querySelectorAll('.j-router-view');
+      
+      if (route.path === '*') {
+        renderParams.index = 0;
+      }
       
       route.component().then((module) => {
         routerView[renderParams.index].innerHTML = module.default().template;
