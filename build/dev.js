@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const { SRC_PATH } = require('./utils');
+const {SRC_PATH} = require('./utils');
 const base = require('./base');
 
 const dev = {
@@ -16,24 +16,24 @@ const dev = {
     loaders: [
       {
         test: /\.css$/,
-        loaders: [ 'style-loader', 'css-loader' ],
+        loaders: ['style-loader', 'css-loader']
       },
       {
         test: /\.less$/,
-        loaders: [ 'style-loader', 'css-loader', 'less-loader' ],
+        loaders: ['style-loader', 'css-loader', 'less-loader']
       }
     ]
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new webpack.DefinePlugin({
-      "process.env": {
-        NODE_ENV: JSON.stringify("development")
+      'process.env': {
+        NODE_ENV: JSON.stringify('development')
       }
     }),
     new HtmlWebpackPlugin({
       template: path.resolve(SRC_PATH, 'index.html')
-    }),
+    })
   ]
 };
 

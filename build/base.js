@@ -1,6 +1,6 @@
 const path = require('path');
 const Dotenv = require('dotenv-webpack');
-const { SRC_PATH, DIST_PATH } = require('./utils');
+const {SRC_PATH, DIST_PATH} = require('./utils');
 
 module.exports = {
   entry: {
@@ -14,7 +14,7 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.json'],
     alias: {
-      '@': SRC_PATH,
+      '@': SRC_PATH
     }
   },
   module: {
@@ -22,12 +22,19 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        include: [ SRC_PATH ]
+        include: [SRC_PATH]
+      },
+      {
+        test: /\.(js|hbs)$/,
+        enforce: 'pre',
+        exclude: /node_modules/,
+        loader: 'eslint-loader',
+        include: [SRC_PATH]
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
-        include: [ SRC_PATH ],
+        include: [SRC_PATH],
         query: {
           limit: 1024,
           name: 'img/[hash:7].[ext]'
@@ -36,7 +43,7 @@ module.exports = {
       {
         test: /\.hbs$/,
         loader: 'handlebars-loader',
-        include: [ SRC_PATH ],
+        include: [SRC_PATH],
         exclude: /(node_modules)/
       }
     ]

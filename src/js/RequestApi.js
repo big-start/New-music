@@ -1,17 +1,16 @@
 export default function (options) {
-  let data = options.queryParams;
-
   this.get = function(method, params) {
     const string = generateRequest({method, params, options});
 
     return fetch(string)
       .then(res => res.json()).then(data => {
-        return data
+        return data;
       })
       .catch(err => {
-        console.log(err)
-      })
-  }
+        // eslint-disable-next-line
+        console.log(err);
+      });
+  };
 }
 
 function generateRequest(data) {
@@ -25,7 +24,7 @@ function generateRequest(data) {
   }
 
   for (let key in dataParams) {
-    queryString.push(`${key}=${dataParams[key]}`)
+    queryString.push(`${key}=${dataParams[key]}`);
   }
 
   return `${data.options.url}?${queryString.join('&')}`;
