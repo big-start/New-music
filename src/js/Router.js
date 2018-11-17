@@ -84,11 +84,21 @@ function createHelper(props) {
       const pathArr = route.path.split('/').splice(1);
       let contArr = [];
       let tempArr = [];
+      let have404 = false;
       let renderQueue = [];
       pathArr.forEach((path) => {
         const promise = this.findRoute(routes, {path: `/${path}`}).then((route) => {
           return new Promise((resolve) => {
-            if (route.component) {
+            if (have404) resolve();
+            if (route.component && route.path === '*') {
+              have404 = true;
+              route.component().then((module) => {
+                contArr = [module.default().context];
+                tempArr = [module.default().template];
+                resolve();
+              })
+            }
+            if (route.component && !have404) {
               route.component().then((module) => {
                 contArr.push(module.default().context);
                 tempArr.push(module.default().template);
