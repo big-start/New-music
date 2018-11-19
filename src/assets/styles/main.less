@@ -1,14 +1,48 @@
 @import "variables.less";
 
-.test {
-	width: 50%;
-	overflow: hidden;
-	border: 2px dashed rebeccapurple;
-	.test__text {
-		color: @aqua;
-		background-color: aliceblue;
-	}
-	.test__content {
-		color: red;
+* {
+	margin: 0;
+	padding: 0;
+	font-family: 'Libre Baskerville', serif;
+}
+
+.nav {
+	height: 100px;
+	width: 100%;
+	background: @black;
+	.logo {
+		display: inline-block;
+		padding: 10px;
+		width: 80px;
+		height: 80px;
 	}
 }
+	
+.nav-menu {
+	display: inline-block;
+	height: 100%;
+	margin-left: 25px;
+	vertical-align: top;
+	&__item {
+		display: inline-block;
+		width: 150px;
+		height: 100%;
+		text-align: center;
+		list-style: none;	
+	}
+	&__item-link {
+		display: block;
+		height: 100%;
+		font-weight: bold;
+		line-height: 100px;
+		text-decoration: none;
+		color: @yellow;
+		cursor: pointer;
+		&:hover {
+			color: @black;
+			background: @yellow;
+		}
+	}
+}
+
+
