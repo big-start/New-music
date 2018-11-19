@@ -9,7 +9,7 @@ const dev = {
   devServer: {
     contentBase: SRC_PATH,
     compress: false,
-    port: 8080,
+    port: 4000,
     historyApiFallback: true
   },
   module: {
