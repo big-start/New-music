@@ -33,12 +33,56 @@
 	&__item-link {
 		display: block;
 		height: 100%;
+		font-size: 24px;
 		font-weight: bold;
 		line-height: 100px;
 		text-decoration: none;
 		color: @yellow;
 		cursor: pointer;
 		&:hover {
+			color: @black;
+			background: @yellow;
+		}
+	}
+}
+
+.footer-nav {
+	height: 50px;
+	width: 100%;
+	background: @black;
+	.footer-logo {
+		display: inline-block;
+		padding: 5px;
+		width: 40px;
+		height: 40px;
+	}
+}
+
+.content {
+	min-height: calc(100vh - 150px);
+}
+	
+.footer-nav-menu {
+	display: inline-block;
+	height: 100%;
+	margin-left: 25px;
+	vertical-align: top;
+	&__item {
+		display: inline-block;
+		width: 150px;
+		height: 100%;
+		text-align: center;
+		list-style: none;	
+	}
+	&__item-link {
+		display: block;
+		height: 100%;
+		line-height: 50px;
+		text-decoration: none;
+		color: @yellow;
+		cursor: pointer;
+		&:hover {
+			font-style: italic;
 			color: @black;
 			background: @yellow;
 		}
