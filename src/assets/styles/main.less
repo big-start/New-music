@@ -16,30 +16,33 @@
 		width: 80px;
 		height: 80px;
 	}
-	.nav-menu {
+}
+	
+.nav-menu {
+	display: inline-block;
+	height: 100%;
+	margin-left: 25px;
+	vertical-align: top;
+	&__item {
 		display: inline-block;
+		width: 150px;
 		height: 100%;
-		margin-left: 25px;
-		vertical-align: top;
-		.nav-menu__item {
-			display: inline-block;
-			width: 150px;
-			height: 100%;
-			text-align: center;
-			list-style: none;
-			.nav-menu__item-link {
-				display: block;
-				height: 100%;
-				font-weight: bold;
-				line-height: 100px;
-				text-decoration: none;
-				color: @yellow;
-				cursor: pointer;
-				&:hover {
-					color: @black;
-					background: @yellow;
-				}
-			}
+		text-align: center;
+		list-style: none;	
+	}
+	&__item-link {
+		display: block;
+		height: 100%;
+		font-weight: bold;
+		line-height: 100px;
+		text-decoration: none;
+		color: @yellow;
+		cursor: pointer;
+		&:hover {
+			color: @black;
+			background: @yellow;
 		}
 	}
 }
+
+
