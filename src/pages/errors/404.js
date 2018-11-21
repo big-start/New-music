@@ -5,4 +5,4 @@ export default () => {
     template: template({errorCode: '404'}),
     context: () => {}
   };
-}
+};

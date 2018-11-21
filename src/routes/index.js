@@ -19,7 +19,7 @@ export default function createRouter() {
           {
             path: '/band',
             component: () => import('@/pages/bandPage')
-          },
+          }
         ]
       },
       {

@@ -12,10 +12,9 @@ export default () => {
     * Context - component JS code
     */
     context: () => {
-      console.log('main');
       $('.j-router-link').on('click', function() {
         app.$router.push($(this).data('href'));
       });
     }
   };
-}
+};

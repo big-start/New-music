@@ -9,9 +9,9 @@
 export default function (options) {
   const routes = options.routes;
   const helper = createHelper({routes});
-  
+
   this.init = (() => helper.setRoute(routes, {path: location.pathname}))();
-  
+
   this.push = (route) => {
     helper.findRoute(routes, {path: route}).then((route) => {
       if (route.fullPath !== location.pathname) {
@@ -19,13 +19,13 @@ export default function (options) {
       }
     });
   };
-  
+
   window.addEventListener('popstate', function(e){
     if (e.state.route) {
       helper.setRoute(routes, {path: e.state.route});
     }
   }, false);
-};
+}
 
 
 /*
@@ -97,14 +97,14 @@ function createHelper(props) {
                 contArr = [module.default().context];
                 tempArr = [module.default().template];
                 resolve();
-              })
+              });
             }
             if (route.component && !have404) {
               route.component().then((module) => {
                 contArr.push(module.default().context);
                 tempArr.push(module.default().template);
                 resolve();
-              })
+              });
             }
             if (route.redirect) {
               this.pushRoute(routes, route);
@@ -123,7 +123,6 @@ function createHelper(props) {
     renderAfterReload(contArr, tempArr) {
       const routerView = document.querySelector('.j-router-view');
       let container = document.createElement('div');
-      
       tempArr.forEach((template) => {
         const routerViewList = container.querySelectorAll('.j-router-view');
         if (!routerViewList.length) {
@@ -132,12 +131,12 @@ function createHelper(props) {
           routerViewList[routerViewList.length - 1].innerHTML = template;
         }
       });
-      
+
       routerView.innerHTML = container.innerHTML;
-      
+
       contArr.forEach((context) => {
         context();
-      })
+      });
     },
     pushRoute(routes, route) {
       history.pushState({route: route.fullPath}, '', route.fullPath);
@@ -152,11 +151,9 @@ function createHelper(props) {
     renderComponent(route) {
       const renderParams = this.genRenderParams(route);
       const routerView = document.querySelectorAll('.j-router-view');
-      
       if (route.path === '*') {
         renderParams.index = 0;
       }
-      
       route.component().then((module) => {
         routerView[renderParams.index].innerHTML = module.default().template;
         module.default().context();
@@ -167,7 +164,7 @@ function createHelper(props) {
       return {
         pathLength: pathArr.length,
         index: pathArr.indexOf(route.path.substring(1))
-      }
+      };
     }
-  }
+  };
 }
