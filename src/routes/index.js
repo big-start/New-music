@@ -19,7 +19,7 @@ export default function createRouter() {
           {
             path: '/band',
             component: () => import('@/pages/bandPage')
-          },
+          }
         ]
       },
       {
@@ -27,18 +27,18 @@ export default function createRouter() {
         name: 'TrackPage',
         component: () => import('@/pages/trackPage')
       },
-      // TODO separate route into files, add error pages
+      // TODO separate route into files
       // bandRoutes,
-      // {
-      //   path: '/errors',
-      //   name: '500',
-      //   component: () => import('@/pages/errors/500')
-      // },
-      // {
-      //   path: '*',
-      //   name: '404',
-      //   component: () => import('@/pages/errors/404')
-      // }
+      {
+        path: '/errors',
+        name: '500',
+        component: () => import('@/pages/errors/500')
+      },
+      {
+        path: '*',
+        name: '404',
+        component: () => import('@/pages/errors/404')
+      }
     ]
   });
 }

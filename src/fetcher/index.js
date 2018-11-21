@@ -19,5 +19,5 @@ export default {
   },
   getAlbumTop: (params) => {
     return LastFm.get('album.gettoptags', params);
-  },
-}
+  }
+};
