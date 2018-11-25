@@ -4,12 +4,16 @@ const merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const {SRC_PATH} = require('./utils');
 const base = require('./base');
+const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
 
 const dev = {
   devServer: {
     contentBase: SRC_PATH,
     compress: false,
     port: 4000,
+    open: true, // open when server is ready
+    quiet: true, // allow to use FriendlyErrorsPlugin
+    overlay: true, // show errors in browser
     historyApiFallback: true
   },
   module: {
@@ -33,7 +37,8 @@ const dev = {
     }),
     new HtmlWebpackPlugin({
       template: path.resolve(SRC_PATH, 'index.html')
-    })
+    }),
+    new FriendlyErrorsPlugin()
   ]
 };
 
