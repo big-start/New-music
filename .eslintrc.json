@@ -26,6 +26,7 @@
         "no-param-reassign": "off",
         "vars-on-top": "off",
         "object-shorthand": "off",
+        "no-console": "warn",
         "no-trailing-spaces": ["error"],
         "no-useless-escape": ["error"],
         "no-new-func": ["error"],

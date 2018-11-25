@@ -1,6 +1,6 @@
 import Api from '@/js/RequestApi';
 
-const key = process.env.APP_API_KEY;
+const key = process.env.API_KEY;
 const LastFm = new Api({
   url: 'http://ws.audioscrobbler.com/2.0/',
   queryParams: {
@@ -14,7 +14,7 @@ export default {
   getAllTrack: (params) => {
     return LastFm.get('track.gettoptags', params);
   },
-  getAllArtis: (params) => {
+  getAllArtists: (params) => {
     return LastFm.get('artist.gettopalbums', params);
   },
   getAlbumTop: (params) => {

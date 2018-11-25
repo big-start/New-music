@@ -83,9 +83,8 @@ function createHelper(props) {
     },
     setRoute(routes, route) {
       const pathArr = route.path.split('/').splice(1);
-      let contArr = [];
-      let tempArr = [];
       let have404 = false;
+      let renderArr = [];
       let renderQueue = [];
       pathArr.forEach((path) => {
         const promise = this.findRoute(routes, {path: `/${path}`}).then((route) => {
@@ -94,15 +93,21 @@ function createHelper(props) {
             if (route.component && route.path === '*') {
               have404 = true;
               route.component().then((module) => {
-                contArr = [module.default().context];
-                tempArr = [module.default().template];
+                renderArr = {
+                  context: module.default().context,
+                  template: module.default().template,
+                  props: module.default().props
+                };
                 resolve();
               });
             }
             if (route.component && !have404) {
               route.component().then((module) => {
-                contArr.push(module.default().context);
-                tempArr.push(module.default().template);
+                renderArr.push({
+                  context: module.default().context,
+                  template: module.default().template,
+                  props: module.default().props
+                });
                 resolve();
               });
             }
@@ -115,27 +120,27 @@ function createHelper(props) {
         renderQueue.push(promise);
       });
       Promise.all(renderQueue).then(() => {
-        if (contArr.length && tempArr.length) {
-          this.renderAfterReload(contArr, tempArr);
+        if (renderArr.length) {
+          this.renderAfterReload(renderArr);
         }
       });
     },
-    renderAfterReload(contArr, tempArr) {
+    renderAfterReload(renderArr) {
       const routerView = document.querySelector('.j-router-view');
       let container = document.createElement('div');
-      tempArr.forEach((template) => {
+      renderArr.forEach((renderItem) => {
         const routerViewList = container.querySelectorAll('.j-router-view');
         if (!routerViewList.length) {
-          container.innerHTML = template;
+          container.innerHTML = renderItem.template;
         } else {
-          routerViewList[routerViewList.length - 1].innerHTML = template;
+          routerViewList[routerViewList.length - 1].innerHTML = renderItem.template;
         }
       });
 
       routerView.innerHTML = container.innerHTML;
 
-      contArr.forEach((context) => {
-        context();
+      renderArr.forEach((renderItem) => {
+        renderItem.context(renderItem.props);
       });
     },
     pushRoute(routes, route) {
@@ -155,8 +160,9 @@ function createHelper(props) {
         renderParams.index = 0;
       }
       route.component().then((module) => {
+        const props = module.default().props;
         routerView[renderParams.index].innerHTML = module.default().template;
-        module.default().context();
+        module.default().context(props);
       });
     },
     genRenderParams(route) {

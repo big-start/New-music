@@ -8,14 +8,13 @@ export default class App {
       }
     }
   }
-  
+
   createComponent(options) {
     return (() => {
-        return {
-          ...options,
-          props: this // use this props as arguments for context
-        };
-      }
-    )();
+      return {
+        ...options,
+        props: {...this.$libs, ...this} // use this props as arguments for context
+      };
+    })();
   }
 }
