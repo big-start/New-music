@@ -47,25 +47,26 @@
 }
 
 .footer-nav {
+	position: relative;
 	height: 50px;
 	width: 100%;
-	background: @black;
 	.footer-logo {
+		position: absolute;
+		right: 25px;
 		display: inline-block;
-		padding: 5px;
-		width: 40px;
-		height: 40px;
+		padding: 10px;
+		width: 30px;
+		height: 30px;
 	}
 }
 
 .content {
-	min-height: calc(100vh - 150px);
+	min-height: calc(100vh - 180px);
 }
 	
 .footer-nav-menu {
 	display: inline-block;
 	height: 100%;
-	margin-left: 25px;
 	vertical-align: top;
 	&__item {
 		display: inline-block;
@@ -86,6 +87,16 @@
 			color: @black;
 			background: @yellow;
 		}
+	}
+}
+
+.footer {
+	height: 80px;
+	background: @black;
+	.footer-dev {
+		padding: 6px 0;
+		text-align: center;
+		color: @yellow;
 	}
 }
 
