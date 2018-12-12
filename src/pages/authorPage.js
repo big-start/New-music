@@ -5,7 +5,7 @@ export default () => {
   return {
     template: template({name: 'world author page (example)!'}),
     context: () => {
-      app.$api.getAllArtis({artist: 'cher'}).then(() => {});
+      app.$api.getAllArtists({artist: 'cher'}).then(() => {});
     }
   };
 };

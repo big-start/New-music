@@ -10,19 +10,19 @@ export default function (options) {
   const routes = options.routes;
   const helper = createHelper({routes});
 
-  this.init = (() => helper.setRoute(routes, {path: location.pathname}))();
+  this.init = (() => helper.setRoute({path: location.pathname}))();
 
   this.push = (route) => {
     helper.findRoute(routes, {path: route}).then((route) => {
       if (route.fullPath !== location.pathname) {
-        helper.pushRoute(routes, route);
+        helper.pushRoute(route);
       }
     });
   };
 
   window.addEventListener('popstate', function(e){
     if (e.state.route) {
-      helper.setRoute(routes, {path: e.state.route});
+      helper.setRoute({path: e.state.route});
     }
   }, false);
 }
@@ -81,33 +81,38 @@ function createHelper(props) {
     isRouteExist(route) {
       return this.routesArr.indexOf(route.path) !== -1;
     },
-    setRoute(routes, route) {
+    setRoute(route) {
       const pathArr = route.path.split('/').splice(1);
-      let contArr = [];
-      let tempArr = [];
       let have404 = false;
+      let renderArr = [];
       let renderQueue = [];
       pathArr.forEach((path) => {
-        const promise = this.findRoute(routes, {path: `/${path}`}).then((route) => {
+        const promise = this.findRoute(this.routes, {path: `/${path}`}).then((route) => {
           return new Promise((resolve) => {
             if (have404) resolve();
             if (route.component && route.path === '*') {
               have404 = true;
               route.component().then((module) => {
-                contArr = [module.default().context];
-                tempArr = [module.default().template];
+                renderArr = {
+                  context: module.default().context,
+                  template: module.default().template,
+                  props: module.default().props
+                };
                 resolve();
               });
             }
             if (route.component && !have404) {
               route.component().then((module) => {
-                contArr.push(module.default().context);
-                tempArr.push(module.default().template);
+                renderArr.push({
+                  context: module.default().context,
+                  template: module.default().template,
+                  props: module.default().props
+                });
                 resolve();
               });
             }
             if (route.redirect) {
-              this.pushRoute(routes, route);
+              this.pushRoute(route);
               resolve();
             }
           });
@@ -115,34 +120,34 @@ function createHelper(props) {
         renderQueue.push(promise);
       });
       Promise.all(renderQueue).then(() => {
-        if (contArr.length && tempArr.length) {
-          this.renderAfterReload(contArr, tempArr);
+        if (renderArr.length) {
+          this.renderAfterReload(renderArr);
         }
       });
     },
-    renderAfterReload(contArr, tempArr) {
+    renderAfterReload(renderArr) {
       const routerView = document.querySelector('.j-router-view');
       let container = document.createElement('div');
-      tempArr.forEach((template) => {
+      renderArr.forEach((renderItem) => {
         const routerViewList = container.querySelectorAll('.j-router-view');
         if (!routerViewList.length) {
-          container.innerHTML = template;
+          container.innerHTML = renderItem.template;
         } else {
-          routerViewList[routerViewList.length - 1].innerHTML = template;
+          routerViewList[routerViewList.length - 1].innerHTML = renderItem.template;
         }
       });
 
       routerView.innerHTML = container.innerHTML;
 
-      contArr.forEach((context) => {
-        context();
+      renderArr.forEach((renderItem) => {
+        renderItem.context(renderItem.props);
       });
     },
-    pushRoute(routes, route) {
+    pushRoute(route) {
       history.pushState({route: route.fullPath}, '', route.fullPath);
       if (route.redirect) {
         history.pushState({route: route.redirect.path}, '', route.redirect.path);
-        this.setRoute(routes, {path: route.redirect.path});
+        this.setRoute({path: route.redirect.path});
       }
       if (route.component) {
         this.renderComponent(route);
@@ -155,8 +160,9 @@ function createHelper(props) {
         renderParams.index = 0;
       }
       route.component().then((module) => {
+        const props = module.default().props;
         routerView[renderParams.index].innerHTML = module.default().template;
-        module.default().context();
+        module.default().context(props);
       });
     },
     genRenderParams(route) {

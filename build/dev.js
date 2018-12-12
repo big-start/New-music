@@ -10,7 +10,7 @@ const dev = {
   devServer: {
     contentBase: SRC_PATH,
     compress: false,
-    port: 4000,
+    port: 8080,
     open: true, // open when server is ready
     quiet: true, // allow to use FriendlyErrorsPlugin
     overlay: true, // show errors in browser
