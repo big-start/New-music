@@ -17,4 +17,11 @@ export default class App {
       };
     })();
   }
+
+  render(template) {
+    return new Promise((resolve) => {
+      document.querySelector('.j-content').innerHTML = template;
+      resolve();
+    });
+  }
 }

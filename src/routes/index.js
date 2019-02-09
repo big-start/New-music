@@ -6,11 +6,11 @@ export default function createRouter() {
     routes: [
       {
         path: '/',
-        redirect: {path: '/main'}
+        redirect: {path: '/app'}
       },
       {
-        path: '/main',
-        component: () => import('@/pages/mainPage'),
+        path: '/app',
+        component: () => import('@/pages/appWrapper'),
         children: [
           {
             path: '/author',
@@ -21,11 +21,6 @@ export default function createRouter() {
             component: () => import('@/pages/bandPage')
           }
         ]
-      },
-      {
-        path: '/track',
-        name: 'TrackPage',
-        component: () => import('@/pages/trackPage')
       },
       // TODO separate route into files
       // bandRoutes,
