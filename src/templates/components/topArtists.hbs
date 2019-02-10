@@ -2,8 +2,13 @@
   <h1 class="top-artists__title">{{ title }}</h1>
   <div class="top-artists__list">
     {{#each data.artists.artist}}
-      <a class="top-artists__tag"
-         href="#">{{name}}</a>
+      <a class="top-artists__artist"
+         href="{{url}}">
+        <p class="top-artists__artist-name">{{name}}</p>
+        <p class="top-artists__artist-info"><b>Listeners:</b> {{listeners}}</p>
+        <image class="top-artists__artist-image"
+               src="{{image.[3].[#text]}}"></image>
+      </a>
     {{/each}}
   </div>
 </div>

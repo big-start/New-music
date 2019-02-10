@@ -10,7 +10,6 @@ export default () => {
         $router.push($(this).data('href'));
       });
       $api.getTopTracks().then((data) => {
-        console.log(data.tracks.track[0]);
         const tracksTmp = topTracks({title: 'Top tracks list', data});
         app.render({template: tracksTmp});
       });
