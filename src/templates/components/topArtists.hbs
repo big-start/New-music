@@ -1,0 +1,9 @@
+<div class="top-artists">
+  <h1 class="top-artists__title">{{ title }}</h1>
+  <div class="top-artists__list">
+    {{#each data.artists.artist}}
+      <a class="top-artists__tag"
+         href="#">{{name}}</a>
+    {{/each}}
+  </div>
+</div>

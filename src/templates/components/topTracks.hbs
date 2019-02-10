@@ -1,0 +1,8 @@
+<div class="top-tracks">
+  <h1 class="top-tracks__title">{{ title }}</h1>
+  <div class="top-tracks__list">
+    {{#each data.tracks.track}}
+      <a class="top-tracks__tag" href="#">{{name}}</a>
+    {{/each}}
+  </div>
+</div>

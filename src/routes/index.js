@@ -13,12 +13,12 @@ export default function createRouter() {
         component: () => import('@/pages/appWrapper'),
         children: [
           {
-            path: '/author',
-            component: () => import('@/pages/authorPage')
+            path: '/artists',
+            component: () => import('@/pages/artistsPage')
           },
           {
-            path: '/band',
-            component: () => import('@/pages/bandPage')
+            path: '/tracks',
+            component: () => import('@/pages/tracksPage')
           }
         ]
       },

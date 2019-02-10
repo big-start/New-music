@@ -4,11 +4,11 @@ import template from '@/templates/test.hbs';
 export default () => {
   return app.createComponent({
     template: template({name: 'world band page (example)!'}),
-    context: ({$}) => {
+    context: ({$, $router, $api}) => {
       $('.j-router-link').on('click', function() {
-        app.$router.push($(this).data('href'));
+        $router.push($(this).data('href'));
       });
-      app.$api.getAlbumTop({artist: 'radiohead', album: 'the%20bends'}).then(() => {});
+      $api.getAlbumTop({artist: 'radiohead', album: 'the%20bends'}).then(() => {});
     }
   });
 };

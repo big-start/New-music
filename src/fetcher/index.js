@@ -11,14 +11,11 @@ const LastFm = new Api({
 });
 
 export default {
-  getAllTrack: (params) => {
-    return LastFm.get('track.gettoptags', params);
+  getTopTracks: (params) => {
+    return LastFm.get('chart.gettoptracks', params);
   },
-  getAllArtists: (params) => {
-    return LastFm.get('artist.gettopalbums', params);
-  },
-  getAlbumTop: (params) => {
-    return LastFm.get('album.gettoptags', params);
+  getTopArtists: (params) => {
+    return LastFm.get('chart.gettopartists', params);
   },
   getTopTags: (params) => {
     return LastFm.get('chart.gettoptags', params);
