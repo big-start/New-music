@@ -5,10 +5,12 @@
     </a>
     <ul class="nav-menu">
       <li class="nav-menu__item">
-        <a class="nav-menu__item-link j-router-link" data-href="/tracks">Tracks</a>
+        <a data-href="/tracks"
+           class="nav-menu__item-link j-router-link {{#if tracks}}active{{/if}}">Tracks</a>
       </li>
       <li class="nav-menu__item">
-        <a class="nav-menu__item-link j-router-link" data-href="/artists">Artists</a>
+        <a data-href="/artists"
+           class="nav-menu__item-link j-router-link {{#if artists}}active{{/if}}">Artists</a>
       </li>
     </ul>
   </nav>

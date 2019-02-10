@@ -2,7 +2,7 @@
   <h1 class="top-tracks__title">{{ title }}</h1>
   <div class="top-tracks__list">
     {{#each data.tracks.track}}
-      <a class="top-tracks__track" href="{{url}}">
+      <a class="top-tracks__track" href="/track&artist={{artist.name}}&track={{name}}">
         <image class="top-tracks__track-image"
                src="{{image.[1].[#text]}}"></image>
         <div class="top-tracks__track-content">

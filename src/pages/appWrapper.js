@@ -9,7 +9,10 @@ export default () => {
     /*
     * Template - handlebars template
     */
-    template: template(),
+    template: template({
+      artists: window.location.pathname.indexOf('artists') !== -1,
+      tracks: window.location.pathname.indexOf('tracks') !== -1
+    }),
     /*
     * Context - component JS code
     */
@@ -18,7 +21,7 @@ export default () => {
         $router.push($(this).data('href'));
       });
       $api.getTopTags().then((data) => {
-        const tagsTmp = topTags({title: 'Top tags list', data});
+        const tagsTmp = topTags({title: 'Top tags list', tags: data.tags.tag});
         app.render({template: tagsTmp});
       });
     }

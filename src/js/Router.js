@@ -10,14 +10,19 @@ export default function (options) {
   const routes = options.routes;
   const helper = createHelper({routes});
 
+  this.route = {
+    path: helper.extractPath(),
+    query: helper.extractQuery()
+  };
+
   this.routerViewClass = '.j-router-view';
   this.routerLinkClass = '.j-router-link';
 
-  this.init = (() => helper.setRoute({path: location.pathname}))();
+  this.init = (() => helper.setRoute({path: helper.extractPath()}))();
 
   this.push = (route) => {
     helper.findRoute(routes, {path: route}).then((route) => {
-      if (route.fullPath !== location.pathname) {
+      if (route.fullPath !== helper.extractPath()) {
         helper.pushRoute(route);
       }
     });
@@ -53,6 +58,19 @@ function createHelper(props) {
     }(props.routes)),
 
     // Methods
+    extractPath() {
+      return location.pathname.split('&')[0];
+    },
+    extractQuery() {
+      const queryList = {};
+      location.pathname.split('&').forEach((item, index) => {
+        if (index) {
+          const queryItem = item.split('=');
+          queryList[queryItem[0]] = queryItem[1];
+        }
+      });
+      return queryList;
+    },
     findRoute(routes, route) {
       if (this.isRouteExist(route)) {
         return new Promise((resolve) => {
@@ -172,7 +190,7 @@ function createHelper(props) {
       });
     },
     genRenderParams(route) {
-      const pathArr = location.pathname.split('/').splice(1);
+      const pathArr = this.extractPath().split('/').splice(1);
       return {
         pathLength: pathArr.length,
         index: pathArr.indexOf(route.path.substring(1))

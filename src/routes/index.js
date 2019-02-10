@@ -22,6 +22,10 @@ export default function createRouter() {
           }
         ]
       },
+      {
+        path: '/track',
+        component: () => import('@/pages/oneTrackPage')
+      },
       // TODO separate route into files
       // bandRoutes,
       {

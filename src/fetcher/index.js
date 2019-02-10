@@ -11,6 +11,7 @@ const LastFm = new Api({
 });
 
 export default {
+  // tops (for list pages)
   getTopTracks: (params) => {
     return LastFm.get('chart.gettoptracks', params);
   },
@@ -19,5 +20,10 @@ export default {
   },
   getTopTags: (params) => {
     return LastFm.get('chart.gettoptags', params);
+  },
+
+  // track page
+  getTrackInfo: (params) => {
+    return LastFm.get('track.getInfo', params);
   }
 };
