@@ -9,10 +9,7 @@ require('@/assets/styles/artist.less');
 export default () => {
   return app.createComponent({
     template: template(),
-    context: ({$, $router, $api}) => {
-      $($router.routerLinkClass).on('click', function() {
-        $router.push($(this).data('href'));
-      });
+    context: ({$router, $api}) => {
       $api.getArtistInfo($router.route.query).then((data) => {
         app.render({template: artistInfo({
           artists: data.artist.similar.artist,

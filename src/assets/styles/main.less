@@ -16,6 +16,19 @@ b, i {
 	font-size: inherit;
 }
 
+.btn {
+	display: inline-block;
+	width: auto;
+	padding: 10px 20px;
+	color: @black;
+	background: @yellow;
+	&:hover {
+		text-decoration: underline;
+		opacity: .8;
+		cursor: pointer;
+	}
+}
+
 .nav {
 	height: 100px;
 	width: 100%;
@@ -38,7 +51,7 @@ b, i {
 		width: 150px;
 		height: 100%;
 		text-align: center;
-		list-style: none;	
+		list-style: none;
 	}
 	&__item-link {
 		display: block;
@@ -93,4 +106,25 @@ b, i {
 	}
 }
 
-
+.error {
+	display: flex;
+	flex-direction: column;
+	height: 100vh;
+	overflow: hidden;
+	text-align: center;
+	&__content {
+		margin: auto;
+	}
+	&__text {
+		margin: 20px auto;
+	}
+	&__code {
+		margin: 10px auto;
+		font-size: 10em;
+		color: @yellow;
+	}
+	&__link {
+		width: 120px;
+		margin: 10px auto;
+	}
+}

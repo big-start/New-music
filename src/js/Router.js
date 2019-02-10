@@ -8,15 +8,18 @@
 
 export default function (options) {
   const routes = options.routes;
-  const helper = createHelper({routes});
+  const helper = createHelper({routes, selectors: {
+    view: '.j-router-view',
+    link: '.j-router-link'
+  }});
 
   this.route = {
     path: helper.extractPath(),
     query: helper.extractQuery()
   };
 
-  this.routerViewClass = '.j-router-view';
-  this.routerLinkClass = '.j-router-link';
+  this.routerViewClass = helper.viewClass;
+  this.routerLinkClass = helper.linkClass;
 
   this.init = (() => helper.setRoute({path: helper.extractPath()}))();
 
@@ -28,7 +31,7 @@ export default function (options) {
     });
   };
 
-  window.addEventListener('popstate', function(e){
+  window.addEventListener('popstate', (e) => {
     if (e.state.route) {
       helper.setRoute({path: e.state.route});
     }
@@ -43,6 +46,8 @@ function createHelper(props) {
   const routesArr = [];
   return {
     // Properties
+    viewClass: props.selectors.view,
+    linkClass: props.selectors.link,
     routes: props.routes,
     routesArr: (function genRoutesArr(routes) {
       genRoutesArr.routesArr = genRoutesArr.routesArr || [];
@@ -114,11 +119,11 @@ function createHelper(props) {
             if (route.component && route.path === '*') {
               have404 = true;
               route.component().then((module) => {
-                renderArr = {
+                renderArr = [{
                   context: module.default().context,
                   template: module.default().template,
                   props: module.default().props
-                };
+                }];
                 resolve();
               });
             }
@@ -147,10 +152,10 @@ function createHelper(props) {
       });
     },
     renderAfterReload(renderArr) {
-      const routerView = document.querySelector('.j-router-view');
+      const routerView = document.querySelector(this.viewClass);
       let container = document.createElement('div');
       renderArr.forEach((renderItem) => {
-        const routerViewList = container.querySelectorAll('.j-router-view');
+        const routerViewList = container.querySelectorAll(this.viewClass);
         if (!renderItem.template) return;
         if (!routerViewList.length) {
           container.innerHTML = renderItem.template;
@@ -164,6 +169,7 @@ function createHelper(props) {
       renderArr.forEach((renderItem) => {
         renderItem.context(renderItem.props);
       });
+      this.addListeners();
     },
     pushRoute(route) {
       history.pushState({route: route.fullPath}, '', route.fullPath);
@@ -177,7 +183,7 @@ function createHelper(props) {
     },
     renderComponent(route) {
       const renderParams = this.genRenderParams(route);
-      const routerView = document.querySelectorAll('.j-router-view');
+      const routerView = document.querySelectorAll(this.viewClass);
       if (route.path === '*') {
         renderParams.index = 0;
       }
@@ -195,6 +201,21 @@ function createHelper(props) {
         pathLength: pathArr.length,
         index: pathArr.indexOf(route.path.substring(1))
       };
+    },
+    addListeners() {
+      const routesLinks = document.querySelectorAll(this.viewClass);
+      routesLinks.forEach((link) => {
+        link.addEventListener('click', (e) => {
+          const path = e.target.getAttribute('data-href') || '';
+          if (path) {
+            this.findRoute(this.routes, {path}).then((route) => {
+              if (route.fullPath !== this.extractPath()) {
+                this.pushRoute(route);
+              }
+            });
+          }
+        });
+      });
     }
   };
 }

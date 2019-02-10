@@ -13,10 +13,7 @@ export default () => {
     /*
     * Context - component JS code
     */
-    context: ({$, $router, $api}) => {
-      $($router.routerLinkClass).on('click', function() {
-        $router.push($(this).data('href'));
-      });
+    context: ({$api}) => {
       $api.getTopTags().then((data) => {
         app.render({template: topTags({title: 'Top tags list', tags: data.tags.tag})});
       });

@@ -10,10 +10,7 @@ export default () => {
       artists: window.location.pathname.indexOf('artists') !== -1,
       tracks: window.location.pathname.indexOf('tracks') !== -1
     }),
-    context: ({$, $router, $api}) => {
-      $($router.routerLinkClass).on('click', function() {
-        $router.push($(this).data('href'));
-      });
+    context: ({$api}) => {
       $api.getTopTracks().then((data) => {
         const tracksTmp = topTracks({title: 'Top tracks list', data});
         app.render({template: tracksTmp});
