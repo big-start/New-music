@@ -3,15 +3,13 @@ import topTracks from '@/templates/components/topTracks.hbs';
 
 export default () => {
   return app.createComponent({
-    template: '',
     context: ({$, $router, $api}) => {
-      $('.j-router-link').on('click', function() {
+      $($router.routerLinkClass).on('click', function() {
         $router.push($(this).data('href'));
       });
       $api.getTopTracks().then((data) => {
-        console.log(data);
         const tracksTmp = topTracks({title: 'Top tracks list', data});
-        app.render(tracksTmp);
+        app.render({template: tracksTmp});
       });
     }
   });

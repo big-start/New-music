@@ -14,12 +14,12 @@ export default () => {
     * Context - component JS code
     */
     context: ({$, $router, $api}) => {
-      $('.j-router-link').on('click', function() {
+      $($router.routerLinkClass).on('click', function() {
         $router.push($(this).data('href'));
       });
       $api.getTopTags().then((data) => {
         const tagsTmp = topTags({title: 'Top tags list', data});
-        app.render(tagsTmp);
+        app.render({template: tagsTmp});
       });
     }
   });

@@ -10,6 +10,9 @@ export default function (options) {
   const routes = options.routes;
   const helper = createHelper({routes});
 
+  this.routerViewClass = '.j-router-view';
+  this.routerLinkClass = '.j-router-link';
+
   this.init = (() => helper.setRoute({path: location.pathname}))();
 
   this.push = (route) => {
@@ -130,6 +133,7 @@ function createHelper(props) {
       let container = document.createElement('div');
       renderArr.forEach((renderItem) => {
         const routerViewList = container.querySelectorAll('.j-router-view');
+        if (!renderItem.template) return;
         if (!routerViewList.length) {
           container.innerHTML = renderItem.template;
         } else {
@@ -161,7 +165,9 @@ function createHelper(props) {
       }
       route.component().then((module) => {
         const props = module.default().props;
-        routerView[renderParams.index].innerHTML = module.default().template;
+        if (module.default().template) {
+          routerView[renderParams.index].innerHTML = module.default().template;
+        }
         module.default().context(props);
       });
     },
