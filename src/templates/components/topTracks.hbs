@@ -2,7 +2,17 @@
   <h1 class="top-tracks__title">{{ title }}</h1>
   <div class="top-tracks__list">
     {{#each data.tracks.track}}
-      <a class="top-tracks__tag" href="#">{{name}}</a>
+      <a class="top-tracks__track" href="{{url}}">
+        <image class="top-tracks__track-image"
+               src="{{image.[1].[#text]}}"></image>
+        <div class="top-tracks__track-content">
+          <p class="top-tracks__track-name">{{artist.name}} &mdash; {{name}}</p>
+          <p class="top-tracks__track-info">
+            <span><b>Played:</b> {{playcount}}</span>
+            <span><b>Listerners:</b> {{listeners}}</span>
+          </p>
+        </div>
+      </a>
     {{/each}}
   </div>
 </div>

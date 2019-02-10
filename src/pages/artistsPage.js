@@ -1,6 +1,8 @@
 import app from '@/main';
 import topArtists from '@/templates/components/topArtists.hbs';
 
+require('@/assets/styles/top-artists.less');
+
 export default () => {
   return app.createComponent({
     context: ({$, $router, $api}) => {

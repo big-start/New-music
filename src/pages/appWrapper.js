@@ -2,7 +2,7 @@ import app from '@/main';
 import template from '@/templates/appWrapper.hbs';
 import topTags from '@/templates/components/topTags.hbs';
 
-require('@/assets/styles/tags.less');
+require('@/assets/styles/top-tags.less');
 
 export default () => {
   return app.createComponent({
