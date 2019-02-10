@@ -22,8 +22,13 @@ export default {
     return LastFm.get('chart.gettoptags', params);
   },
 
-  // track page
+  // track requests
   getTrackInfo: (params) => {
     return LastFm.get('track.getInfo', params);
+  },
+
+  // artist requests
+  getArtistInfo: (params) => {
+    return LastFm.get('artist.getinfo', params);
   }
 };

@@ -1,5 +1,6 @@
 import  Router from '@/js/Router';
-// import bandRoutes from './bandRoutes';
+import tracksRoutes from './tracksRoutes';
+import artistsRoutes from './artistsRoutes';
 
 export default function createRouter() {
   return new Router({
@@ -10,24 +11,10 @@ export default function createRouter() {
       },
       {
         path: '/app',
-        component: () => import('@/pages/appWrapper'),
-        children: [
-          {
-            path: '/artists',
-            component: () => import('@/pages/artistsPage')
-          },
-          {
-            path: '/tracks',
-            component: () => import('@/pages/tracksPage')
-          }
-        ]
+        component: () => import('@/pages/appWrapper')
       },
-      {
-        path: '/track',
-        component: () => import('@/pages/oneTrackPage')
-      },
-      // TODO separate route into files
-      // bandRoutes,
+      tracksRoutes,
+      artistsRoutes,
       {
         path: '/errors',
         name: '500',
