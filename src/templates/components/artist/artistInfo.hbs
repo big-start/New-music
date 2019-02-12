@@ -1,0 +1,17 @@
+<div class="artist">
+  <h1 class="artist__name">{{artist.name}}</h1>
+  <section class="artist__info">
+    <image class="artist__image"
+           src="{{artist.image.[3].[#text]}}"></image>
+    <p class="artist__text">{{{artist.bio.content}}}</p>
+    <p class="artist__addition"><b>Published:</b> {{artist.bio.published}}</p>
+    <p class="artist__addition"><b>Played:</b> {{artist.stats.playcount}}</p>
+    <p class="artist__addition"><b>Listerners:</b> {{artist.stats.listeners}}</p>
+  </section>
+  <h2 class="artist__subtitle">Similar artists:</h2>
+  {{> ../topArtists }}
+  <h2 class="artist__subtitle">Top tags:</h2>
+  {{> ../topTags}}
+  <h2 class="artist__subtitle">Popular albums:</h2>
+  {{> ../albums}}
+</div>

@@ -1,7 +1,7 @@
 require('normalize.css');
 require('@/assets/styles/main.less');
 
-import App from '@/js/App.js';
+import App from '@/js/App';
 import $api from '@/fetcher';
 import routes from '@/routes';
 

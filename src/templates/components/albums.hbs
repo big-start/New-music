@@ -1,0 +1,14 @@
+<div class="albums">
+  <h1 class="albums__title">{{ title }}</h1>
+  <div class="albums__list">
+    {{#each albums}}
+      <a class="albums__album"
+         href="{{url}}">
+        <image class="albums__album-image"
+               src="{{image.[2].[#text]}}"></image>
+        <p class="albums__album-name">{{name}}</p>
+        <p class="albums__album-info"><b>Played:</b> {{playcount}}</p>
+      </a>
+    {{/each}}
+  </div>
+</div>

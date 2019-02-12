@@ -11,13 +11,27 @@ const LastFm = new Api({
 });
 
 export default {
-  getAllTrack: (params) => {
-    return LastFm.get('track.gettoptags', params);
+  // tops (for list pages)
+  getTopTracks: (params) => {
+    return LastFm.get('chart.gettoptracks', params);
   },
-  getAllArtists: (params) => {
+  getTopArtists: (params) => {
+    return LastFm.get('chart.gettopartists', params);
+  },
+  getTopTags: (params) => {
+    return LastFm.get('chart.gettoptags', params);
+  },
+
+  // track requests
+  getTrackInfo: (params) => {
+    return LastFm.get('track.getInfo', params);
+  },
+
+  // artist requests
+  getArtistInfo: (params) => {
+    return LastFm.get('artist.getinfo', params);
+  },
+  getArtistAlbums: (params) => {
     return LastFm.get('artist.gettopalbums', params);
-  },
-  getAlbumTop: (params) => {
-    return LastFm.get('album.gettoptags', params);
   }
 };

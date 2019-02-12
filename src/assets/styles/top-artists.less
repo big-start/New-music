@@ -1,0 +1,34 @@
+@import "variables.less";
+
+.top-artists {
+  &__list {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  &__artist {
+    position: relative;
+    display: inline-block;
+    width: calc(34.2999999% - 30px);
+    margin: 5px;
+    padding: 10px 20px;
+    background: @yellow;
+    color: @black;
+    text-decoration: none;
+    &:hover {
+      opacity: .7;
+      cursor: pointer;
+    }
+    &-name {
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+    &-info {
+      margin-bottom: 10px;
+      font-size: 12px;
+    }
+    &-image {
+      width: 100%;
+    }
+  }
+}

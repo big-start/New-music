@@ -1,0 +1,12 @@
+<div class="paginator">
+  <button data-type="prev"
+          {{#unless page.past}}disabled{{/unless}}
+          class="paginator__btn paginator__btn--prev j-paginator-btn">prev</button>
+  <span class="paginator__page">{{{page.past}}}</span>
+  <span class="paginator__page paginator__page--current">{{page.current}}</span>
+  <span class="paginator__page">{{page.next}}</span>
+  <button data-type="next"
+          {{#if page.isDisabledNext}}disabled{{/if}}
+          class="paginator__btn paginator__btn--next j-paginator-btn">next</button>
+  <span class="paginator__total">{{page.total}}</span>
+</div>

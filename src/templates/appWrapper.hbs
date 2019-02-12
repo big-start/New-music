@@ -1,0 +1,32 @@
+<header>
+  <nav class="nav">
+    <a class="logo j-router-link" data-href="/app">
+      <img src="../assets/images/logo-play.svg" alt="logo">
+    </a>
+    <ul class="nav-menu">
+      <li class="nav-menu__item">
+        <a data-href="/tracks"
+           class="nav-menu__item-link j-router-link {{#if tracks}}active{{/if}}">Tracks</a>
+      </li>
+      <li class="nav-menu__item">
+        <a data-href="/artists"
+           class="nav-menu__item-link j-router-link {{#if artists}}active{{/if}}">Artists</a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<!--j-router-view - class for routing render-->
+<div class="content j-router-view">
+  <div class="content__loader lds-ring"><div></div><div></div><div></div><div></div></div>
+</div>
+
+<footer class="footer">
+  <div class="footer__dev">
+    <p>New-music &copy; copyright 2018</p>
+  </div>
+  <a class="footer__logo j-router-link" data-href="/app">
+    <img src="../assets/images/logo-play.svg" alt="logo">
+  </a>
+  <a class="footer__link" href="https://github.com/big-start/New-music">New music project</a>
+</footer>

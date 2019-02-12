@@ -1,0 +1,25 @@
+@import "variables.less";
+
+.top-tags {
+  &__list {
+    position: relative;
+  }
+  &__tag {
+    position: relative;
+    display: inline-block;
+    margin: 5px;
+    padding: 10px 20px;
+    background: @yellow;
+    color: @black;
+    text-decoration: none;
+    &:hover {
+      opacity: .8;
+      cursor: pointer;
+    }
+    &:before {
+      content: '#';
+      font-weight: bold;
+      font-style: italic;
+    }
+  }
+}

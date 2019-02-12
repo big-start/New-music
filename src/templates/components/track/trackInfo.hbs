@@ -1,0 +1,10 @@
+<div class="track">
+  <h1 class="track__name">{{track.artist.name}} &mdash; {{track.name}}</h1>
+  <section class="track__info">
+    <p class="track__text">{{{track.wiki.content}}}</p>
+    <p class="track__addition"><b>Published:</b> {{track.wiki.published}}</p>
+    <p class="track__addition"><b>Played:</b> {{track.playcount}}</p>
+    <p class="track__addition"><b>Listerners:</b> {{track.listeners}}</p>
+  </section>
+  {{> ../topTags}}
+</div>

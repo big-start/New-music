@@ -1,34 +1,20 @@
 import  Router from '@/js/Router';
-// import bandRoutes from './bandRoutes';
+import tracksRoutes from './tracksRoutes';
+import artistsRoutes from './artistsRoutes';
 
 export default function createRouter() {
   return new Router({
     routes: [
       {
         path: '/',
-        redirect: {path: '/main'}
+        redirect: {path: '/app'}
       },
       {
-        path: '/main',
-        component: () => import('@/pages/mainPage'),
-        children: [
-          {
-            path: '/author',
-            component: () => import('@/pages/authorPage')
-          },
-          {
-            path: '/band',
-            component: () => import('@/pages/bandPage')
-          }
-        ]
+        path: '/app',
+        component: () => import('@/pages/appWrapper')
       },
-      {
-        path: '/track',
-        name: 'TrackPage',
-        component: () => import('@/pages/trackPage')
-      },
-      // TODO separate route into files
-      // bandRoutes,
+      tracksRoutes,
+      artistsRoutes,
       {
         path: '/errors',
         name: '500',

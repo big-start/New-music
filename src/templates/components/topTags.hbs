@@ -1,0 +1,9 @@
+<div class="top-tags">
+  <h1 class="top-tags__title">{{ title }}</h1>
+  <div class="top-tags__list">
+    {{#each tags}}
+      <a class="top-tags__tag"
+         href="{{url}}">{{name}}</a>
+    {{/each}}
+  </div>
+</div>

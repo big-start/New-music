@@ -1,0 +1,36 @@
+@import "variables.less";
+
+.albums {
+  &__title {
+    text-align: center;
+  }
+  &__list {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    width: 897px;
+    margin: auto;
+  }
+  &__album {
+    position: relative;
+    display: inline-block;
+    width: 214px;
+    margin: 5px;
+    padding: 20px 20px 30px;
+    background: @yellow;
+    color: @black;
+    text-align: center;
+    text-decoration: none;
+    &:hover {
+      opacity: .7;
+      cursor: pointer;
+    }
+    &-name {
+      margin-bottom: 10px;
+      font-weight: bold;
+    }
+    &-image {
+      margin-bottom: 20px;
+    }
+  }
+}
