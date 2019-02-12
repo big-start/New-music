@@ -8,7 +8,10 @@
     <p class="artist__addition"><b>Played:</b> {{artist.stats.playcount}}</p>
     <p class="artist__addition"><b>Listerners:</b> {{artist.stats.listeners}}</p>
   </section>
-  <h2>Similar artists:</h2>
+  <h2 class="artist__subtitle">Similar artists:</h2>
   {{> ../topArtists }}
+  <h2 class="artist__subtitle">Top tags:</h2>
   {{> ../topTags}}
+  <h2 class="artist__subtitle">Popular albums:</h2>
+  {{> ../albums}}
 </div>

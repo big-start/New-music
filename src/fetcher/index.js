@@ -30,5 +30,8 @@ export default {
   // artist requests
   getArtistInfo: (params) => {
     return LastFm.get('artist.getinfo', params);
+  },
+  getArtistAlbums: (params) => {
+    return LastFm.get('artist.gettopalbums', params);
   }
 };
